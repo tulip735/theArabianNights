@@ -1,0 +1,24 @@
+
+
+
+# Targets Windows & Unix temporary files
+~$*
+*~
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+
+#java class 文件
+*.class
+
+#
+makefile
+*.sh
