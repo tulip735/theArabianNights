@@ -18,6 +18,8 @@ Thumbs.db
 
 #java class 文件
 *.class
+*.o
+*.x
 
 #
 makefile
