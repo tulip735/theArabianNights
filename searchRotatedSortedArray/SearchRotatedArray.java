@@ -43,8 +43,10 @@ public class SearchRotatedArray {
     public static void main(String[] args) {
 
         // int[] nums = new int[] {4,5,6,8,0,1,2,3};
-        int[] nums = new int[] {3,1};
-        int res = search(nums,1);
+        // int[] nums = new int[] {3,1};
+        // int[] nums = new int[] {4,5,6,8,0,0,1,1,2,3,4};
+        int[] nums = new int[] {1,5,1,1,1,1,1};
+        int res = search(nums,5);
         System.out.println(res);
         
     }
