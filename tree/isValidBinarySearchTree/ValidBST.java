@@ -24,6 +24,7 @@ public class ValidBST {
         if (l != null && root.val < l)
             return false;
         if (r != null && root.val > r)
+            return false;
 
         return (isValidHelper(root.left, l, root.val ) && isValidHelper(root.right, root.val, r));
         
@@ -32,9 +33,25 @@ public class ValidBST {
 
     // inorder iterative
     public static boolean isValidBSTInorderIter(TreeNode root) {
-
-
-        
+        if (root == null)
+            return false;
+        Deque<TreeNode> stack = new LinkedList<>();
+        // stack.push(root);
+        double pre = Double.MIN_VALUE;
+        while (!stack.isEmpty() || root != null) {
+            while (root != null) {
+                stack.push(root);
+                root = root.left;
+            }
+            root = stack.pop();
+            if (root.val < pre) {
+                System.out.println(new ArrayList<>(Arrays.asList(root.val, pre)));
+                return false;
+            }
+            pre = root.val;
+            root = root.right;
+        }
+        return true;
     }
 
 
@@ -42,11 +59,13 @@ public class ValidBST {
     public static void main(String[] args) {
 
         // int[] nums = new int[]{2, 1, 3};
-        int[] nums = new int[] {5, 1, 4, -1, -1, 3, 6};
+        // int[] nums = new int[] {5, 1, 4, -1, -1, 3, 6};
+        int[] nums = new int[] {6, 4, 9, 3, 5, 7, 10};
         // 静态方法可以直接调用 buildTree和printTree
         TreeNode root = TreeNode.buildTree(nums);
         TreeNode.printTree(root);
-        if (isValidBST(root))
+        // if (isValidBST(root))
+        if (isValidBSTInorderIter(root))
             System.out.println("ok");
 
         
