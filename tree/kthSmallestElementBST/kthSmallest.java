@@ -20,7 +20,7 @@ public class kthSmallest {
         Stack<TreeNode> s = new Stack<>();
         while (!s.empty() || root != null) {
             while (root != null) {
-                s.add(root);
+                s.push(root);
                 root = root.left;
             }
 
