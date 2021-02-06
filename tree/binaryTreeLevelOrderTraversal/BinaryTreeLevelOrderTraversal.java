@@ -87,13 +87,36 @@ public class BinaryTreeLevelOrderTraversal {
         return result;
     }
 
+
+    public static List<List<Integer>> levelOrderDFS(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        DFSHelper(root, 0, res);
+        return res;
+        
+    }
+
+    public static void DFSHelper(TreeNode root, int height, List<List<Integer>> res) {
+        if (root == null)
+            return;
+
+        if (height == res.size()) {
+            res.add(new ArrayList<>());
+        }
+
+        res.get(height).add(root.val);
+        DFSHelper(root.left, height + 1, res);
+        DFSHelper(root.right, height + 1, res);
+        
+    }
+
     public static void main(String[] args) {
 
 
         int[] nums = new int[] {3,9,20,-1,-1,15,7};
         TreeNode root = TreeNode.buildTree(nums);
         // List<List<Integer>> result = levelOrder(root);
-        List<List<Integer>> result = levelOrderOneQueue(root);
+        // List<List<Integer>> result = levelOrderOneQueue(root);
+        List<List<Integer>> result = levelOrderDFS(root);
         System.out.println(result);
         
     }
