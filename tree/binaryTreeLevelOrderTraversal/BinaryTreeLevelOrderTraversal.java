@@ -61,12 +61,39 @@ public class BinaryTreeLevelOrderTraversal {
 
 
 
+    public static List<List<Integer>> levelOrderOneQueue(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        Queue<TreeNode> q = new LinkedList<>();
+        if (root == null) {
+            return result;
+        } else {
+            q.offer(root);
+        }
+        
+        while (!q.isEmpty()) {
+            List<Integer> sub = new ArrayList<>();
+            int subLen = q.size();
+            for (int i = 0; i < subLen; i++) {
+                if (q.peek().left != null)
+                    q.offer(q.peek().left);
+                if (q.peek().right != null)
+                    q.offer(q.peek().right);
+
+                sub.add(q.poll().val);
+            }
+            
+            result.add(sub);
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
 
 
         int[] nums = new int[] {3,9,20,-1,-1,15,7};
         TreeNode root = TreeNode.buildTree(nums);
-        List<List<Integer>> result = levelOrder(root);
+        // List<List<Integer>> result = levelOrder(root);
+        List<List<Integer>> result = levelOrderOneQueue(root);
         System.out.println(result);
         
     }
