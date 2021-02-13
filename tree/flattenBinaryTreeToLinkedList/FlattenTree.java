@@ -48,12 +48,32 @@ public class FlattenTree {
 
 
 
+    public static void flattenRecursive(TreeNode root) {
+        if (root == null)
+            return;
+
+        flattenRecursive(root.left);
+        flattenRecursive(root.right);
+
+        if (root.left == null)
+            return;
+
+        // 三方合并，将左子树形成的链表插入到root 和root.right之间
+        TreeNode p = root.left;
+        // 找到左子树最右一个节点
+        while (p.right != null)
+            p = p.right;
+        p.right = root.right;
+        root.right = root.left;
+        root.left = null;
+    }
 
     public static void main(String[] args) {
 
         int[] nums = new int[] {1,2,5,3,4,-1,6};
         TreeNode root = TreeNode.buildTree(nums);
-        flatten(root);
+        // flatten(root);
+        flattenRecursive(root);
         TreeNode.printTree(root);
         while(root != null) {
             System.out.printf("%d\t", root.val);
