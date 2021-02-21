@@ -48,7 +48,7 @@ public class PopulatingNextRrightPointers {
     }
 
 
-    public Node connectDFS(Node root) {
+    public void connectDFS(Node root) {
         if(root == null)
             return;
         
